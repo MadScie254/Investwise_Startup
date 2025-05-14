@@ -18,335 +18,112 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Lato:wght@300;400;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 
     <style>
-        /* --- Theme Variables --- */
         :root {
-            /* Light Theme (Default for InvestWise) */
-            --bg-primary-light: #ffffff; /* Clean white */
-            --bg-secondary-light: #f8fafc; /* Light neutral gray (Tailwind gray-50) */
-            --bg-accent-light: #eef2ff; /* Indigo-50 / Light Teal variant */
-            --text-primary-light: #111827; /* Tailwind gray-900 */
-            --text-secondary-light: #4b5563; /* Tailwind gray-600 */
-            --text-accent-light: #0d9488; /* Teal-600 - Main Accent */
-            --text-accent-light-darker: #0f766e; /* Teal-700 */
-            --border-color-light: #e5e7eb; /* Tailwind gray-200 */
-            --glass-bg-light: rgba(255, 255, 255, 0.7);
-            --glass-border-light: rgba(229, 231, 235, 0.7); /* gray-200 with alpha */
-            --shadow-color-light: rgba(13, 148, 136, 0.1); /* Teal-based shadow */
-            --hero-overlay-bg-light: rgba(248, 250, 252, 0.85); /* Light gray overlay */
-            --card-bg-light: #ffffff;
-            --input-bg-light: #ffffff;
-            --input-text-light: var(--text-primary-light);
-            --input-border-light: var(--border-color-light);
-            --loader-bg-light: var(--bg-secondary-light);
-            --loader-color-light: var(--text-accent-light);
-            --loader-logo-filter-light: none;
-            --gradient-start-light: var(--text-accent-light);
-            --gradient-mid-light: #087065; /* Darker Teal */
-            --gradient-end-light: #14b8a6; /* Lighter Teal */
+            --color-bg-main: #F8FAFC; /* Light Gray - Page background */
+            --color-bg-card: #FFFFFF; /* White - Card backgrounds */
+            --color-bg-alt-section: #F1F5F9; /* Slightly darker gray for alternating sections if needed */
+
+            --color-text-headings: #1E293B; /* Dark Slate - Primary text, headings */
+            --color-text-body: #334155;    /* Slate - Body text */
+            --color-text-muted: #64748B;   /* Lighter Slate - Muted text */
+            --color-text-on-accent: #FFFFFF; /* White text for on accent elements */
+
+            --color-accent: #14B8A6;       /* Teal */
+            --color-accent-hover: #0D9488; /* Darker Teal */
+            
+            --color-border-custom: #E2E8F0; /* Slate for borders */
+
+            /* Font families */
+            --font-primary: 'Poppins', sans-serif;
+            --font-secondary: 'Inter', sans-serif;
         }
 
         .dark-mode {
-            /* Dark Theme for InvestWise */
-            --bg-primary-dark: #0f172a; /* Slate-900 - Main background */
-            --bg-secondary-dark: #1e293b; /* Slate-800 - Secondary background */
-            --bg-accent-dark: #334155; /* Slate-700 - Accent background */
-            --text-primary-dark: #f1f5f9; /* Slate-100 - Primary text */
-            --text-secondary-dark: #94a3b8; /* Slate-400 - Secondary text */
-            --text-accent-dark: #2dd4bf; /* Teal-400 - Main Accent for Dark Mode */
-            --text-accent-dark-darker: #14b8a6; /* Teal-500 */
-            --border-color-dark: #334155; /* Slate-700 - Border color */
-            --glass-bg-dark: rgba(30, 41, 59, 0.7); /* Slate-800 with alpha */
-            --glass-border-dark: rgba(51, 65, 85, 0.7); /* Slate-700 with alpha */
-            --shadow-color-dark: rgba(45, 212, 191, 0.15); /* Teal-based shadow for dark */
-            --hero-overlay-bg-dark: rgba(15, 23, 42, 0.85); /* Slate-900 overlay */
-            --card-bg-dark: var(--bg-secondary-dark);
-            --input-bg-dark: var(--bg-accent-dark);
-            --input-text-dark: var(--text-primary-dark);
-            --input-border-dark: #475569; /* Slate-600 */
-            --loader-bg-dark: var(--bg-primary-dark);
-            --loader-color-dark: var(--text-accent-dark);
-            --loader-logo-filter-dark: brightness(0) invert(1) sepia(1) saturate(5) hue-rotate(130deg); /* Make logo teal-ish white */
-            --gradient-start-dark: var(--text-accent-dark);
-            --gradient-mid-dark: #5eead4; /* Lighter Teal */
-            --gradient-end-dark: #99f6e4; /* Even Lighter Teal */
+            --color-bg-main: #0F172A;    /* Darker Slate for dark mode page background */
+            --color-bg-card: #1E293B;    /* Dark Slate for dark mode card backgrounds */
+            --color-bg-alt-section: #1A202C; /* Even darker for alternating sections */
+
+            --color-text-headings: #F1F5F9;  /* Light Gray for dark mode headings */
+            --color-text-body: #CBD5E1;      /* Lighter Slate for dark mode body text */
+            --color-text-muted: #94A3B8;    /* Muted text for dark mode */
+            
+            --color-border-custom: #334155; /* Darker border for dark mode */
+            /* Accent colors can remain the same or be adjusted if needed for contrast */
         }
 
-        /* Apply variables */
         body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-primary-light);
-            color: var(--text-primary-light);
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-        .dark-mode body {
-            background-color: var(--bg-primary-dark);
-            color: var(--text-primary-dark);
+            font-family: var(--font-secondary);
+            background-color: var(--color-bg-main);
+            color: var(--color-text-body);
         }
 
-        h1, h2, h3, h4, h5, h6, .font-heading {
-            font-family: 'Inter', sans-serif;
+        .font-heading {
+            font-family: var(--font-primary);
         }
+
+        /* Mapping to your existing custom Tailwind classes */
+        .bg-primary-custom { background-color: var(--color-bg-main); }
+        /* Use bg-secondary-custom for cards or alternating sections */
+        .bg-secondary-custom { background-color: var(--color-bg-card); } 
+        .text-primary-custom { color: var(--color-text-headings); }
+        .text-secondary-custom { color: var(--color-text-body); }
+        .text-muted-custom { color: var(--color-text-muted); }
+        .border-custom { border-color: var(--color-border-custom); }
         
-        .text-accent { color: var(--text-accent-light); }
-        .dark-mode .text-accent { color: var(--text-accent-dark); }
-        .bg-accent-custom { background-color: var(--text-accent-light); } /* For buttons etc. */
-        .dark-mode .bg-accent-custom { background-color: var(--text-accent-dark); }
-        .border-accent-custom { border-color: var(--text-accent-light); }
-        .dark-mode .border-accent-custom { border-color: var(--text-accent-dark); }
+        .text-accent, /* Assuming .text-accent was your old name for accent text */
+        .text-accent-custom { color: var(--color-accent); }
         
-        .bg-primary-custom { background-color: var(--bg-primary-light); }
-        .dark-mode .bg-primary-custom { background-color: var(--bg-primary-dark); }
-        .bg-secondary-custom { background-color: var(--bg-secondary-light); }
-        .dark-mode .bg-secondary-custom { background-color: var(--bg-secondary-dark); }
-        .text-primary-custom { color: var(--text-primary-light); }
-        .dark-mode .text-primary-custom { color: var(--text-primary-dark); }
-        .text-secondary-custom { color: var(--text-secondary-light); }
-        .dark-mode .text-secondary-custom { color: var(--text-secondary-dark); }
-        .border-custom { border-color: var(--border-color-light); }
-        .dark-mode .border-custom { border-color: var(--border-color-dark); }
-        .card-bg-custom { background-color: var(--card-bg-light); }
-        .dark-mode .card-bg-custom { background-color: var(--card-bg-dark); }
+        .bg-accent-custom { 
+            background-color: var(--color-accent); 
+            color: var(--color-text-on-accent);
+        }
+        .hover\\:bg-accent-hover-custom:hover { 
+            background-color: var(--color-accent-hover); 
+            color: var(--color-text-on-accent);
+        }
+        .border-accent-custom { border-color: var(--color-accent); }
 
-        .gradient-text {
-            background: linear-gradient(90deg, var(--gradient-start-light), var(--gradient-mid-light), var(--gradient-end-light));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-        .dark-mode .gradient-text {
-            background: linear-gradient(90deg, var(--gradient-start-dark), var(--gradient-mid-dark), var(--gradient-end-dark));
-            -webkit-background-clip: text; background-clip: text; color: transparent;
-        }
-
-
-        /* --- Loading Overlay --- */
-        #loading-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background-color: var(--loader-bg-light);
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            z-index: 10000; opacity: 1; transition: opacity 0.5s ease-out; pointer-events: auto;
-        }
-        .dark-mode #loading-overlay { background-color: var(--loader-bg-dark); }
-        #loading-overlay.hidden { opacity: 0; pointer-events: none; }
-        .loader-logo { height: 60px; width: auto; margin-bottom: 20px; filter: var(--loader-logo-filter-light); }
-        .dark-mode .loader-logo { filter: var(--loader-logo-filter-dark); }
-        .loader-spinner {
-            border: 4px solid rgba(0, 0, 0, 0.1);
-            border-left-color: var(--loader-color-light);
-            .dark-mode & { border-left-color: var(--loader-color-dark); }
-            border-radius: 50%; width: 50px; height: 50px; animation: spin 1s linear infinite;
-        }
-        .loader-text { margin-top: 15px; font-size: 1rem; color: var(--text-secondary-light); }
-        .dark-mode .loader-text { color: var(--text-secondary-dark); }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* --- Header & Navigation --- */
-        #main-header {
-            position: sticky; top: 0; z-index: 50;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease, backdrop-filter 0.3s ease;
-        }
-        #main-header.scrolled {
-            background: var(--glass-bg-light);
-            -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
-            box-shadow: 0 2px 10px var(--shadow-color-light);
-            border-bottom: 1px solid var(--glass-border-light);
-        }
-        .dark-mode #main-header.scrolled {
-            background: var(--glass-bg-dark);
-            box-shadow: 0 2px 10px var(--shadow-color-dark);
-            border-bottom: 1px solid var(--glass-border-dark);
-        }
-        .nav-link {
-            color: var(--text-secondary-light);
-            .dark-mode & { color: var(--text-secondary-dark); }
-            transition: color 0.3s ease, border-bottom-color 0.3s ease;
-            padding: 0.5rem 0.75rem; font-size: 0.9rem; font-weight: 500;
-            border-bottom: 2px solid transparent;
-        }
-        .nav-link:hover, .nav-link.active {
-            color: var(--text-accent-light);
-            .dark-mode & { color: var(--text-accent-dark); }
-        }
-        .nav-link.active { border-bottom-color: var(--text-accent-light); .dark-mode & { border-bottom-color: var(--text-accent-dark); } font-weight: 600; }
-        
-        #mobile-menu { background-color: var(--bg-secondary-light); .dark-mode & { background-color: var(--bg-secondary-dark); } }
-        #mobile-menu a { color: var(--text-primary-light); .dark-mode & { color: var(--text-primary-dark); } }
-        #mobile-menu a:hover { background-color: var(--bg-accent-light); .dark-mode & { background-color: var(--bg-accent-dark); } }
-        #mobile-menu a.active { color: var(--text-accent-light); .dark-mode & { color: var(--text-accent-dark); } font-weight: 600; }
-
-
-        /* --- Buttons --- */
-        .btn { @apply inline-block font-semibold py-3 px-6 rounded-lg shadow-md transition-all duration-300 ease-in-out focus:outline-none; }
+        /* Button base style (can be a Tailwind component if you have a config) */
         .btn-primary {
-            background-color: var(--text-accent-light); color: white;
-            .dark-mode & { background-color: var(--text-accent-dark); color: var(--bg-primary-dark); }
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem; /* py-3 px-6 */
+            border: 1px solid transparent;
+            font-size: 1rem; /* text-base */
+            font-weight: 500; /* font-medium */
+            border-radius: 0.375rem; /* rounded-md */
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); /* shadow-sm */
+            color: var(--color-text-on-accent);
+            background-color: var(--color-accent);
+            transition: background-color 0.2s ease-in-out, transform 0.15s ease-in-out;
         }
         .btn-primary:hover {
-            background-color: var(--text-accent-light-darker);
-            .dark-mode & { background-color: var(--text-accent-dark-darker); }
-            transform: translateY(-1px); box-shadow: 0 4px 15px var(--shadow-color-light);
-            .dark-mode & { box-shadow: 0 4px 15px var(--shadow-color-dark); }
+            background-color: var(--color-accent-hover);
+            transform: scale(1.03);
         }
-        .btn-outline {
-            background-color: transparent; border: 2px solid var(--text-accent-light); color: var(--text-accent-light);
-            .dark-mode & { border-color: var(--text-accent-dark); color: var(--text-accent-dark); }
-        }
-        .btn-outline:hover {
-            background-color: var(--text-accent-light); color: white;
-            .dark-mode & { background-color: var(--text-accent-dark); color: var(--bg-primary-dark); }
-        }
-        
-        /* --- General Section Styling --- */
-        section { scroll-margin-top: 80px; /* Adjust for sticky header height */ padding: 4rem 0; }
-        .section-padding { @apply py-16 md:py-24; } /* Tailwind's section padding */
-
-        /* --- Cards --- */
-        .feature-card, .content-card {
-            background-color: var(--card-bg-light);
-            .dark-mode & { background-color: var(--card-bg-dark); }
-            @apply p-6 rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-transparent;
-            border-color: var(--border-color-light);
-            .dark-mode & { border-color: var(--border-color-dark); }
-        }
-        .feature-card:hover, .content-card:hover {
-             border-color: var(--text-accent-light);
-            .dark-mode & { border-color: var(--text-accent-dark); }
-             transform: translateY(-4px);
-        }
-
-        /* --- Animations --- */
-        .reveal-on-scroll { opacity: 0; transform: translateY(25px); transition: opacity 0.7s ease-out, transform 0.7s ease-out; }
-        .reveal-on-scroll.is-visible { opacity: 1; transform: translateY(0); }
-        .stagger-children > * { opacity: 0; transform: translateY(20px); } /* JS will handle animation */
-
-        /* --- Hero Section --- */
-        #hero { min-height: 90vh; display: flex; align-items: center; background-color: var(--bg-secondary-light); .dark-mode & { background-color: var(--bg-secondary-dark); } }
-        .hero-content-overlay {
-            background-color: var(--hero-overlay-bg-light);
-            .dark-mode & { background-color: var(--hero-overlay-bg-dark); }
-            @apply p-8 rounded-lg;
-        }
-        #typed-investwise-target .typed-cursor { color: var(--text-accent-light); .dark-mode & {color: var(--text-accent-dark); } font-size: 2.5rem; }
-
-
-        /* --- Timeline (Swiper based) --- */
-        .timeline-swiper-container { width: 100%; padding-top: 20px; padding-bottom: 50px; }
-        .timeline-slide {
-            background-color: var(--card-bg-light);
-            .dark-mode & { background-color: var(--card-bg-dark); }
-            @apply p-6 rounded-lg shadow-lg text-left h-auto flex flex-col; /* Ensure cards can grow */
-            border: 1px solid var(--border-color-light);
-            .dark-mode & { border: 1px solid var(--border-color-dark); }
-            box-sizing: border-box;
-        }
-        .timeline-slide-icon {
-            @apply absolute -top-5 left-1/2 transform -translate-x-1/2 p-3 rounded-full shadow-md text-white;
-            background-color: var(--text-accent-light);
-            .dark-mode & { background-color: var(--text-accent-dark); color: var(--bg-primary-dark); }
-        }
-        .timeline-slide h4 { color: var(--text-primary-light); .dark-mode & { color: var(--text-primary-dark); } }
-        .timeline-slide .timeline-date { color: var(--text-accent-light); .dark-mode & { color: var(--text-accent-dark); } }
-        .timeline-slide p { color: var(--text-secondary-light); .dark-mode & { color: var(--text-secondary-dark); } @apply text-sm flex-grow; }
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--text-accent-light) !important; /* Important to override Swiper's default */
-            .dark-mode & { color: var(--text-accent-dark) !important; }
-            top: 50%; transform: translateY(-50%);
-        }
-        .swiper-pagination-bullet-active {
-            background: var(--text-accent-light) !important;
-            .dark-mode & { background: var(--text-accent-dark) !important; }
-        }
-
-        /* --- Tabs --- */
-        .tabs button {
-            @apply px-4 py-2 font-medium text-sm rounded-md transition-colors duration-200;
-            color: var(--text-secondary-light); .dark-mode & { color: var(--text-secondary-dark); }
-        }
-        .tabs button.active {
-            background-color: var(--text-accent-light); color: white;
-            .dark-mode & { background-color: var(--text-accent-dark); color: var(--bg-primary-dark); }
-        }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; animation: fadeInContent 0.5s ease; }
-        @keyframes fadeInContent { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        /* --- ROI Calculator --- */
-        .roi-calculator {
-            background-color: var(--card-bg-light);
-            .dark-mode & { background-color: var(--card-bg-dark); }
-            @apply p-6 md:p-8 rounded-xl shadow-xl border;
-            border-color: var(--border-color-light);
-            .dark-mode & { border-color: var(--border-color-dark); }
-        }
-        .roi-calculator label { color: var(--text-primary-light); .dark-mode & { color: var(--text-primary-dark); } @apply block mb-1 font-medium; }
-        .roi-calculator input[type="range"] { @apply w-full cursor-pointer accent-teal-600 dark:accent-teal-400; accent-color: var(--text-accent-light); .dark-mode & { accent-color: var(--text-accent-dark); } }
-        .roi-output { color: var(--text-primary-light); .dark-mode & { color: var(--text-primary-dark); } @apply mt-4 text-xl font-bold; }
-        .roi-output .value { color: var(--text-accent-light); .dark-mode & { color: var(--text-accent-dark); } }
-
-        /* --- Contact Form --- */
-        #contact-form input, #contact-form textarea {
-            background-color: var(--input-bg-light); color: var(--input-text-light); border-color: var(--input-border-light);
-            .dark-mode & { background-color: var(--input-bg-dark); color: var(--input-text-dark); border-color: var(--input-border-dark); }
-            @apply w-full px-4 py-2.5 rounded-lg focus:ring-2;
-            outline: none;
-        }
-        #contact-form input:focus, #contact-form textarea:focus {
-            border-color: var(--text-accent-light) !important; /* Tailwind might override */
-            box-shadow: 0 0 0 2px var(--text-accent-light-darker); /* Ring effect */
-             .dark-mode & { 
-                border-color: var(--text-accent-dark) !important; 
-                box-shadow: 0 0 0 2px var(--text-accent-dark-darker);
-            }
-        }
-
-        /* --- Footer --- */
-        footer {
-            background-color: var(--bg-secondary-light);
-            .dark-mode & { background-color: var(--bg-secondary-dark); }
-            border-top: 1px solid var(--border-color-light);
-            .dark-mode & { border-top-color: var(--border-color-dark); }
-        }
-        
-        /* --- Theme Toggle Button --- */
-        #theme-toggle-button {
-            background-color: var(--bg-accent-light);
-            .dark-mode & { background-color: var(--bg-accent-dark); }
-            color: var(--text-secondary-light);
-            .dark-mode & { color: var(--text-secondary-dark); }
-            @apply p-2 rounded-full fixed bottom-5 right-5 z-50 shadow-lg hover:scale-110 transition-transform;
-        }
-         #theme-toggle-button:hover {
-            color: var(--text-accent-light);
-            .dark-mode & { color: var(--text-accent-dark); }
-        }
-
-        /* High contrast focus indicators for accessibility */
-        *:focus-visible {
-            outline: 3px solid var(--text-accent-light-darker);
-            .dark-mode & { outline-color: var(--text-accent-dark-darker); }
+        .btn-primary:focus {
+            outline: 2px solid transparent;
             outline-offset: 2px;
+            box-shadow: 0 0 0 3px var(--color-accent-hover); /* focus:ring-accent-hover */
         }
 
-        html { scroll-behavior: smooth; }
     </style>
 </head>
 <body class="antialiased">
 
     <div id="loading-overlay">
-        <svg id="investwise-loader-logo" class="loader-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-            <path d="M50 10 C 27.90861 10 10 27.90861 10 50 C 10 72.09139 27.90861 90 50 90 C 72.09139 90 90 72.09139 90 50 C 90 27.90861 72.09139 10 50 10 Z M 50 15 C 69.329966 15 85 30.670034 85 50 C 85 69.329966 69.329966 85 50 85 C 30.670034 85 15 69.329966 15 50 C 15 30.670034 30.670034 15 50 15 Z M 45 30 L 45 45 L 30 45 L 30 55 L 45 55 L 45 70 L 55 70 L 55 55 L 70 55 L 70 45 L 55 45 L 55 30 L 45 30 Z"/>
-        </svg>
-        <div class="loader-spinner"></div>
-        <p class="loader-text font-heading">InvestWise is Loading...</p>
+        <!-- Ensure your loading overlay also uses the new CSS variables for its styling if needed -->
     </div>
 
     <header id="main-header" class="bg-primary-custom">
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 <a href="#hero" class="flex items-center space-x-2" aria-label="InvestWise Home">
-                    <svg class="h-8 w-auto text-accent" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor">
-                         <path d="M50 10 C 27.90861 10 10 27.90861 10 50 C 10 72.09139 27.90861 90 50 90 C 72.09139 90 90 72.09139 90 50 C 90 27.90861 72.09139 10 50 10 Z M 50 15 C 69.329966 15 85 30.670034 85 50 C 85 69.329966 69.329966 85 50 85 C 30.670034 85 15 69.329966 15 50 C 15 30.670034 30.670034 15 50 15 Z M 45 30 L 45 45 L 30 45 L 30 55 L 45 55 L 45 70 L 55 70 L 55 55 L 70 55 L 70 45 L 55 45 L 55 30 L 45 30 Z"/>
+                    <svg class="h-9 w-auto text-accent" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"> <path d="M50 10 C 27.90861 10 10 27.90861 10 50 C 10 72.09139 27.90861 90 50 90 C 72.09139 90 90 72.09139 90 50 C 90 27.90861 72.09139 10 50 10 Z M 50 15 C 69.329966 15 85 30.670034 85 50 C 85 69.329966 69.329966 85 50 85 C 30.670034 85 15 69.329966 15 50 C 15 30.670034 30.670034 15 50 15 Z M 45 30 L 45 45 L 30 45 L 30 55 L 45 55 L 45 70 L 55 70 L 55 55 L 70 55 L 70 45 L 55 45 L 55 30 L 45 30 Z"/>
                     </svg>
                     <span class="text-2xl font-bold text-primary-custom font-heading">InvestWise</span>
                 </a>
@@ -376,16 +153,16 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="md:hidden hidden border-t border-custom">
+        <div id="mobile-menu" class="md:hidden hidden">
             <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                <a href="#hero" class="nav-link block px-3 py-2 rounded-md text-base">Home</a>
-                <a href="#platform" class="nav-link block px-3 py-2 rounded-md text-base">Platform</a>
-                <a href="#technology" class="nav-link block px-3 py-2 rounded-md text-base">Technology</a>
-                <a href="#why-investwise" class="nav-link block px-3 py-2 rounded-md text-base">Why InvestWise</a>
-                <a href="#roadmap" class="nav-link block px-3 py-2 rounded-md text-base">Roadmap</a>
-                <a href="#investors" class="nav-link block px-3 py-2 rounded-md text-base">Investors</a>
-                <a href="#about" class="nav-link block px-3 py-2 rounded-md text-base">About</a>
-                <a href="#contact" class="nav-link block px-3 py-2 rounded-md text-base">Contact</a>
+                <a href="#hero" class="nav-link">Home</a>
+                <a href="#platform" class="nav-link">Platform</a>
+                <a href="#technology" class="nav-link">Technology</a>
+                <a href="#why-investwise" class="nav-link">Why InvestWise</a>
+                <a href="#roadmap" class="nav-link">Roadmap</a>
+                <a href="#investors" class="nav-link">Investors</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="pt-4 pb-3 border-t border-custom">
                 <div class="px-5"> <a href="#contact" class="block w-full text-center btn btn-primary">Request Demo</a> </div>
@@ -395,25 +172,27 @@
 
     <main>
         <section id="hero" class="relative overflow-hidden">
-            <div class="absolute inset-0 opacity-10 dark-mode:opacity-20">
-                 <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_oNL20jIX2N.json" background="transparent" speed="0.5" style="width: 100%; height: 100%; position: absolute; top:0; left:0;" loop autoplay></lottie-player>
+            <div class="absolute inset-0 opacity-5 dark-mode:opacity-10">
+                 <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_NWXpI42qD3.json" background="transparent" speed="0.3" style="width: 100%; height: 100%; position: absolute; top:0; left:0;" loop autoplay></lottie-player>
             </div>
-            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
-                <div class="max-w-4xl mx-auto hero-content-overlay">
-                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-primary-custom mb-6 font-heading reveal-on-scroll">
-                        Unlock Africa's Potential with <span class="gradient-text" id="typed-investwise-target">Intelligent Forecasting</span>
-                    </h1>
-                    <p class="text-lg sm:text-xl text-secondary-custom mb-10 reveal-on-scroll" style="animation-delay: 0.2s;">
-                        InvestWise Predictor harnesses AI and big data to deliver unparalleled insights into the Kenyan market, empowering smarter investment decisions for entrepreneurs, investors, and policymakers.
-                    </p>
-                    <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-4 reveal-on-scroll" style="animation-delay: 0.4s;">
-                        <a href="#platform" class="btn btn-primary text-lg px-8">Explore the Platform</a>
-                        <a href="#investors" class="btn btn-outline text-lg px-8">Investor Information</a>
+            <div class="container mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 flex items-center justify-center min-h-[calc(95vh-5rem)]"> {/* 5rem is header height approx */}
+                <div> {/* Added a wrapper for content to center it properly */}
+                    <div class="max-w-4xl mx-auto hero-content-overlay">
+                        <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-primary-custom mb-6 font-heading reveal-on-scroll">
+                            Unlock Africa's Potential with <span class="gradient-text" id="typed-investwise-target">Intelligent Forecasting</span>
+                        </h1>
+                        <p class="text-lg sm:text-xl text-secondary-custom mb-10 reveal-on-scroll" style="animation-delay: 0.2s;">
+                            InvestWise Predictor harnesses AI and big data to deliver unparalleled insights into the Kenyan market, empowering smarter investment decisions for entrepreneurs, investors, and policymakers.
+                        </p>
+                        <div class="space-y-4 sm:space-y-0 sm:flex sm:justify-center sm:space-x-6 reveal-on-scroll" style="animation-delay: 0.4s;"> {/* Increased space */}
+                            <a href="#platform" class="btn btn-primary text-lg px-10 py-3.5">Explore Platform</a> {/* Larger button */}
+                            <a href="#investors" class="btn btn-outline text-lg px-10 py-3.5">Investor Info</a>
+                        </div>
                     </div>
-                </div>
-                 <div class="mt-12 lg:mt-16 max-w-2xl mx-auto reveal-on-scroll" style="animation-delay: 0.6s;">
-                    <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_vPnn3KjS6H.json" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay aria-label="Animation of financial data analysis and charts"></lottie-player>
-                    <p class="text-xs text-secondary-custom mt-2">Visualizing data-driven investment intelligence.</p>
+                    <div class="mt-10 lg:mt-12 max-w-xl mx-auto reveal-on-scroll" style="animation-delay: 0.6s;"> {/* Slightly smaller Lottie */}
+                        <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_yMpiqXia1k.json" background="transparent" speed="1" style="width: 100%; height: auto;" loop autoplay aria-label="Animation of financial data analysis and charts with a globe"></lottie-player>
+                        <p class="text-xs text-secondary-custom mt-1">Visualizing data-driven investment intelligence for global impact.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -428,32 +207,32 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 stagger-children">
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="brain-circuit" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="brain-circuit" class="h-16 w-16 text-accent"></i></div>
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">AI Prediction Engine</h3>
                         <p class="text-secondary-custom text-sm">Advanced ML models forecasting GDP, inflation, and sector trends, specifically tuned for Kenya's economy.</p>
                     </div>
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.3s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="lightbulb" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="lightbulb" class="h-16 w-16 text-accent"></i></div>
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Personalized Advisory</h3>
                         <p class="text-secondary-custom text-sm">Tailored investment suggestions and risk assessments derived from comprehensive data analysis.</p>
                     </div>
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.4s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="area-chart" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="area-chart" class="h-16 w-16 text-accent"></i></div>
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Interactive Dashboards</h3>
                         <p class="text-secondary-custom text-sm">Intuitive D3.js-powered visualizations for exploring economic data and uncovering insights (Platform UI).</p>
                     </div>
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.5s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="siren" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="siren" class="h-16 w-16 text-accent"></i></div>
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Real-Time Market Alerts</h3>
                         <p class="text-secondary-custom text-sm">Timely notifications on critical market shifts, policy changes, and emerging opportunities.</p>
                     </div>
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.6s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="sliders-horizontal" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="sliders-horizontal" class="h-16 w-16 text-accent"></i></div>
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Scenario Simulation</h3>
                         <p class="text-secondary-custom text-sm">Tools to model the potential impact of various economic scenarios on your investments.</p>
                     </div>
                     <div class="feature-card text-center reveal-on-scroll" style="animation-delay: 0.7s;">
-                        <div class="flex justify-center mb-5"><i data-lucide="users" class="h-16 w-16 text-accent"></i></div>
+                        <div class="flex justify-center mb-6"><i data-lucide="users-2" class="h-16 w-16 text-accent"></i></div> {/* Changed icon to users-2 for better representation */}
                         <h3 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Stakeholder Focused</h3>
                         <p class="text-secondary-custom text-sm">Empowering Entrepreneurs, Investors, Policymakers, and Researchers with actionable intelligence.</p>
                     </div>
@@ -463,121 +242,77 @@
         
         <section id="platform" class="section-padding bg-secondary-custom">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">Inside the InvestWise Platform</h2>
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">
+                        Our Intelligent Platform
+                    </h2>
                     <p class="text-lg text-secondary-custom max-w-3xl mx-auto reveal-on-scroll" style="animation-delay: 0.1s;">
-                        A glimpse into the user-centric design and powerful analytical tools that define the InvestWise experience. (Note: The actual platform is a separate, dynamic application.)
+                        Discover how InvestWise leverages cutting-edge technology to provide unparalleled market insights and predictive analytics.
                     </p>
                 </div>
 
-                <div class="tabs flex justify-center space-x-2 sm:space-x-4 mb-8 reveal-on-scroll" style="animation-delay: 0.2s;">
-                    <button class="tab-button active" data-tab="dashboard-tab"><i data-lucide="layout-dashboard" class="inline-block mr-2 h-5 w-5"></i>Dashboard</button>
-                    <button class="tab-button" data-tab="suggestions-tab"><i data-lucide="file-check-2" class="inline-block mr-2 h-5 w-5"></i>Suggestions</button>
-                    <button class="tab-button" data-tab="simulations-tab"><i data-lucide="bar-chart-big" class="inline-block mr-2 h-5 w-5"></i>Simulations</button>
-                </div>
-
-                <div id="dashboard-tab" class="tab-content active reveal-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-primary-custom mb-3 font-heading">Interactive Economic Dashboard</h3>
-                            <p class="text-secondary-custom mb-6">
-                                Visualize Kenya's economic landscape like never before. Track GDP growth, inflation rates, sector performance, and key market indicators through dynamic, D3.js-powered charts. Customize views, compare data points, and drill down into specifics with our intuitive, minimalist interface.
-                            </p>
-                            <ul class="text-secondary-custom space-y-2 text-sm">
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Real-time data streams & historical analysis.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Exportable charts and data snippets.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>User-configurable views and watchlists.</li>
-                            </ul>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 md:mb-16">
+                    <div class="content-card p-6 md:p-8 reveal-on-scroll hover:shadow-xl transition-shadow duration-300">
+                        <div class="flex justify-center mb-4">
+                            <i data-lucide="bar-chart-big" class="h-12 w-12 text-accent-custom"></i>
                         </div>
-                        <div class="content-card">
-                             <img src="https://placehold.co/600x400/0D9488/FFFFFF?text=Dynamic+GDP+Chart+Mockup" alt="Mockup of InvestWise Dashboard Chart" class="rounded-lg shadow-lg w-full">
-                             <p class="text-xs text-secondary-custom mt-2 text-center">Illustrative D3.js chart mockup from the platform.</p>
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading text-center">Advanced Analytics</h3>
+                        <p class="text-secondary-custom text-sm text-center">Unlock deep insights with our sophisticated data models and analytical tools.</p>
+                    </div>
+                    <div class="content-card p-6 md:p-8 reveal-on-scroll hover:shadow-xl transition-shadow duration-300" style="animation-delay: 0.1s;">
+                        <div class="flex justify-center mb-4">
+                            <i data-lucide="brain-circuit" class="h-12 w-12 text-accent-custom"></i>
                         </div>
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading text-center">AI-Powered Predictions</h3>
+                        <p class="text-secondary-custom text-sm text-center">Leverage machine learning for accurate market forecasts and trend identification.</p>
+                    </div>
+                    <div class="content-card p-6 md:p-8 reveal-on-scroll hover:shadow-xl transition-shadow duration-300" style="animation-delay: 0.2s;">
+                        <div class="flex justify-center mb-4">
+                             <i data-lucide="shield-check" class="h-12 w-12 text-accent-custom"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading text-center">Secure & Reliable</h3>
+                        <p class="text-secondary-custom text-sm text-center">Built on a robust infrastructure to ensure your data is safe and accessible.</p>
                     </div>
                 </div>
 
-                <div id="suggestions-tab" class="tab-content reveal-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                         <div class="content-card order-last md:order-first">
-                             <img src="https://placehold.co/600x400/1E293B/94A3B8?text=AI+Suggestion+Interface+Mockup" alt="Mockup of AI Investment Suggestions" class="rounded-lg shadow-lg w-full">
-                             <p class="text-xs text-secondary-custom mt-2 text-center">Illustrative AI-driven suggestion card from the platform.</p>
-                        </div>
-                        <div>
-                            <h3 class="text-2xl font-semibold text-primary-custom mb-3 font-heading">AI-Powered Investment Suggestions</h3>
-                            <p class="text-secondary-custom mb-6">
-                                Leverage the power of machine learning to identify promising investment opportunities and mitigate risks. Our platform analyzes vast datasets to provide personalized recommendations based on your profile, market conditions, and predictive models.
-                            </p>
-                             <ul class="text-secondary-custom space-y-2 text-sm">
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Sector-specific opportunity scoring.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Risk assessment and diversification advice.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Alignment with long-term economic forecasts.</li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="text-center mt-10 md:mt-16 reveal-on-scroll" style="animation-delay: 0.3s;">
+                    <a href="platform.html" class="btn-primary">
+                        Explore the Platform
+                        <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                    </a>
                 </div>
-
-                <div id="simulations-tab" class="tab-content reveal-on-scroll" style="animation-delay: 0.3s;">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                        <div>
-                            <h3 class="text-2xl font-semibold text-primary-custom mb-3 font-heading">Advanced Scenario Simulation Tools</h3>
-                            <p class="text-secondary-custom mb-6">
-                                Test potential investment strategies against various economic outlooks. Our simulation tools allow you to model outcomes based on different GDP growth rates, inflation scenarios, policy changes, and global market events, providing a robust framework for decision-making.
-                            </p>
-                             <ul class="text-secondary-custom space-y-2 text-sm">
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Model portfolio performance under stress tests.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Assess impact of macroeconomic shifts.</li>
-                                <li class="flex items-center"><i data-lucide="check-circle" class="h-5 w-5 text-accent mr-2"></i>Compare potential ROI of different strategies.</li>
-                            </ul>
-                        </div>
-                         <div class="content-card">
-                             <img src="https://placehold.co/600x400/0F766E/CCFBF1?text=Investment+Simulation+UI+Mockup" alt="Mockup of Investment Simulation Tool" class="rounded-lg shadow-lg w-full">
-                             <p class="text-xs text-secondary-custom mt-2 text-center">Illustrative simulation tool interface from the platform.</p>
-                        </div>
-                    </div>
-                </div>
-                 <div class="mt-12 text-center reveal-on-scroll" style="animation-delay: 0.4s;">
-                    <lottie-player src="https://assets3.lottiefiles.com/packages/lf20_c9hh3d5z.json" background="transparent" speed="1" style="width: 100%; max-width: 350px; height: auto; margin:auto;" loop autoplay aria-label="Animation of data interface and user interaction"></lottie-player>
-                 </div>
             </div>
         </section>
 
         <section id="technology" class="section-padding bg-primary-custom">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">The Tech Powering InvestWise</h2>
+                <div class="text-center mb-12 md:mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">
+                        Core Technologies
+                    </h2>
                     <p class="text-lg text-secondary-custom max-w-3xl mx-auto reveal-on-scroll" style="animation-delay: 0.1s;">
-                        Our platform is engineered with a cutting-edge technology stack and sophisticated machine learning models to deliver robust, scalable, and accurate financial intelligence.
+                        We utilize a stack of modern and powerful technologies to drive our platform's capabilities.
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12 stagger-children">
-                    <div class="content-card reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <div class="flex items-center mb-4">
-                            <i data-lucide="server-cog" class="h-10 w-10 text-accent mr-4"></i>
-                            <h3 class="text-xl font-semibold text-primary-custom font-heading">Scalable Architecture</h3>
-                        </div>
-                        <p class="text-secondary-custom text-sm mb-2">The core InvestWise platform (not this website) utilizes Django, TensorFlow, React (for platform UI), PostgreSQL, Redis, Docker, and Celery for a resilient and high-performance system.</p>
-                        <p class="text-xs text-secondary-custom font-mono">Stack: Django, TensorFlow, React, PostgreSQL</p>
+                     <div class="content-card p-6 md:p-8 reveal-on-scroll">
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading">Machine Learning</h3>
+                        <p class="text-secondary-custom text-sm">Python, TensorFlow, Scikit-learn.</p>
                     </div>
-                    <div class="content-card reveal-on-scroll" style="animation-delay: 0.3s;">
-                        <div class="flex items-center mb-4">
-                            <i data-lucide="brain" class="h-10 w-10 text-accent mr-4"></i>
-                            <h3 class="text-xl font-semibold text-primary-custom font-heading">Advanced ML Models</h3>
-                        </div>
-                        <p class="text-secondary-custom text-sm mb-2">Employing LSTMs for GDP forecasting, Random Forests/MLPs for investment recommendations, and NLP for sentiment analysis of sector-specific news and reports.</p>
-                        <p class="text-xs text-secondary-custom font-mono">Models: LSTM, Random Forest, NLP</p>
+                     <div class="content-card p-6 md:p-8 reveal-on-scroll">
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading">Data Processing</h3>
+                        <p class="text-secondary-custom text-sm">Apache Spark, Kafka, SQL & NoSQL Databases.</p>
                     </div>
-                    <div class="content-card reveal-on-scroll" style="animation-delay: 0.4s;">
-                        <div class="flex items-center mb-4">
-                            <i data-lucide="database-zap" class="h-10 w-10 text-accent mr-4"></i>
-                            <h3 class="text-xl font-semibold text-primary-custom font-heading">Comprehensive Data Sources</h3>
-                        </div>
-                        <p class="text-secondary-custom text-sm mb-2">Insights derived from KNBS, World Bank, CBK, KRA, NSE, global financial news, alternative data, and user-inputted parameters for simulations.</p>
-                        <p class="text-xs text-secondary-custom font-mono">Data: KNBS, World Bank, CBK, NSE, News APIs</p>
+                     <div class="content-card p-6 md:p-8 reveal-on-scroll">
+                        <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading">Frontend & Mobile</h3>
+                        <p class="text-secondary-custom text-sm">React, Swift, Kotlin, Tailwind CSS.</p>
                     </div>
                 </div>
-                 <div class="text-center reveal-on-scroll" style="animation-delay: 0.5s;">
-                    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_LpD4mmD3Cx.json" background="transparent" speed="1" style="width: 100%; max-width: 500px; height: auto; margin:auto;" loop autoplay aria-label="Animation of data processing and network connections"></lottie-player>
-                    <p class="text-sm text-secondary-custom mt-2">This informational website is built with HTML, Tailwind CSS, and JavaScript. The InvestWise platform it describes uses a more extensive backend and ML infrastructure.</p>
+                 <div class="text-center mt-10 md:mt-16 reveal-on-scroll" style="animation-delay: 0.2s;">
+                    <a href="technology.html" class="btn-primary">
+                        Discover Our Tech Stack
+                        <i data-lucide="arrow-right" class="ml-2 h-5 w-5"></i>
+                    </a>
                 </div>
             </div>
         </section>
@@ -592,20 +327,20 @@
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div class="reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <img src="https://placehold.co/600x450/2DD4BF/0F172A?text=African+Fintech+Growth+Concept" alt="Abstract image representing African Fintech growth" class="rounded-xl shadow-2xl w-full">
-                        <p class="text-xs text-secondary-custom mt-2 text-center">Conceptual image: Growth and innovation in African Fintech.</p>
+                        <lottie-player src="https://assets1.lottiefiles.com/packages/lf20_01jwptn4.json" background="transparent" speed="1" style="width: 100%; max-width: 500px; height: auto; margin:auto;" loop autoplay aria-label="Animation representing African growth and innovation"></lottie-player>
+                        <p class="text-xs text-secondary-custom mt-2 text-center">Conceptualizing growth and innovation in African Fintech.</p>
                     </div>
                     <div class="reveal-on-scroll" style="animation-delay: 0.3s;">
-                        <h3 class="text-2xl font-semibold text-primary-custom mb-5 font-heading">Unlocking the African Market</h3>
-                        <p class="text-secondary-custom mb-6">
+                        <h3 class="text-2xl lg:text-3xl font-semibold text-primary-custom mb-5 font-heading">Unlocking the African Market</h3>
+                        <p class="text-secondary-custom mb-6 leading-relaxed">
                             Kenya and the broader African continent are experiencing a surge in demand for sophisticated, data-driven financial tools. InvestWise is uniquely built to address this need with locally-tuned intelligence.
                         </p>
-                        <h4 class="text-xl font-semibold text-primary-custom mb-3 font-heading">Key Differentiators:</h4>
-                        <ul class="space-y-3 text-secondary-custom">
-                            <li class="flex"><i data-lucide="map-pin" class="h-6 w-6 text-accent mr-3 shrink-0"></i><span><strong>Hyper-Local Focus:</strong> ML models trained on Kenyan & African data nuances.</span></li>
-                            <li class="flex"><i data-lucide="user-check-2" class="h-6 w-6 text-accent mr-3 shrink-0"></i><span><strong>Intuitive User Experience:</strong> Powerful analytics made accessible to all stakeholders.</span></li>
-                            <li class="flex"><i data-lucide="refresh-cw" class="h-6 w-6 text-accent mr-3 shrink-0"></i><span><strong>Continuous Model Improvement:</strong> Ensuring predictions remain relevant and accurate.</span></li>
-                            <li class="flex"><i data-lucide="microscope" class="h-6 w-6 text-accent mr-3 shrink-0"></i><span><strong>Comprehensive Advisory:</strong> Blending predictive insights with actionable strategies.</span></li>
+                        <h4 class="text-xl font-semibold text-primary-custom mb-4 font-heading">Key Differentiators:</h4>
+                        <ul class="space-y-3.5 text-secondary-custom"> {/* Increased spacing */}
+                            <li class="flex items-start"><i data-lucide="map-pin" class="h-6 w-6 text-accent mr-3 shrink-0 mt-0.5"></i><span><strong>Hyper-Local Focus:</strong> ML models meticulously trained on Kenyan & African data nuances for superior accuracy.</span></li>
+                            <li class="flex items-start"><i data-lucide="user-check-2" class="h-6 w-6 text-accent mr-3 shrink-0 mt-0.5"></i><span><strong>Intuitive User Experience:</strong> Powerful analytics made accessible to all stakeholders through a clean, minimalist interface.</span></li>
+                            <li class="flex items-start"><i data-lucide="refresh-cw" class="h-6 w-6 text-accent mr-3 shrink-0 mt-0.5"></i><span><strong>Continuous Model Improvement:</strong> Dynamic retraining and adaptation ensure predictions remain relevant and accurate over time.</span></li>
+                            <li class="flex items-start"><i data-lucide="microscope" class="h-6 w-6 text-accent mr-3 shrink-0 mt-0.5"></i><span><strong>Comprehensive Advisory:</strong> Blending predictive insights with actionable strategies and risk assessments.</span></li>
                         </ul>
                     </div>
                 </div>
@@ -614,7 +349,7 @@
 
         <section id="roadmap" class="section-padding bg-primary-custom">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
+                <div class="text-center mb-16"> {/* Increased margin */}
                     <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">Our Strategic Roadmap</h2>
                     <p class="text-lg text-secondary-custom max-w-3xl mx-auto reveal-on-scroll" style="animation-delay: 0.1s;">
                         Charting the course for future innovation and expansion, delivering increasing value to our users and stakeholders.
@@ -624,12 +359,12 @@
                 <div class="swiper-container timeline-swiper-container reveal-on-scroll" style="animation-delay: 0.2s;">
                     <div class="swiper-wrapper" id="timeline-swiper-wrapper">
                         </div>
-                    <div class="swiper-pagination"></div>
+                    <div class="swiper-pagination relative mt-8"></div> {/* Positioned below */}
                     <div class="swiper-button-next"></div>
                     <div class="swiper-button-prev"></div>
                 </div>
-                <div class="text-center mt-8 reveal-on-scroll" style="animation-delay: 0.3s;">
-                     <lottie-player src="https://assets10.lottiefiles.com/packages/lf20_x62chscx.json" background="transparent" speed="1" style="width: 100%; max-width: 250px; height: auto; margin:auto;" loop autoplay aria-label="Animation of a rocket launching, symbolizing progress"></lottie-player>
+                <div class="text-center mt-12 reveal-on-scroll" style="animation-delay: 0.3s;"> {/* Increased margin */}
+                     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_rigwmxvn.json" background="transparent" speed="1" style="width: 100%; max-width: 280px; height: auto; margin:auto;" loop autoplay aria-label="Animation of a rocket launching, symbolizing progress and future vision"></lottie-player>
                 </div>
             </div>
         </section>
@@ -643,35 +378,35 @@
                     </p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-                    <div class="lg:col-span-2 content-card p-8 reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <h3 class="text-2xl font-semibold text-primary-custom mb-6 font-heading">Key Investment Highlights</h3>
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6 text-secondary-custom">
-                            <div class="flex items-start"><i data-lucide="file-text" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Compelling Value Proposition:</strong> Addressing a critical need for data-driven financial intelligence in Africa.</p></div>
-                            <div class="flex items-start"><i data-lucide="trending-up" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Large & Growing Market:</strong> Tapping into the rapidly expanding fintech and investment sectors.</p></div>
-                            <div class="flex items-start"><i data-lucide="cpu" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Proprietary Technology:</strong> Advanced AI/ML models and a scalable platform architecture.</p></div>
-                            <div class="flex items-start"><i data-lucide="users-2" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Experienced Team:</strong> Led by experts in data science, technology, and finance.</p></div>
-                            <div class="flex items-start"><i data-lucide="target" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Clear Growth Strategy:</strong> Phased development, user acquisition, and market expansion plans.</p></div>
-                            <div class="flex items-start"><i data-lucide="shield-check" class="h-7 w-7 text-accent mr-3 shrink-0"></i><p><strong>Risk Mitigation:</strong> Strategies for market adoption, data accuracy, and competition.</p></div>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-start"> {/* Increased gap */}
+                    <div class="lg:col-span-2 content-card p-8 md:p-10 reveal-on-scroll" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl lg:text-3xl font-semibold text-primary-custom mb-8 font-heading">Key Investment Highlights</h3> {/* Increased margin */}
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7 text-secondary-custom"> {/* Increased gap */}
+                            <div class="flex items-start"><i data-lucide="file-text" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Compelling Value Proposition:</strong> Addressing a critical need for data-driven financial intelligence in Africa.</p></div>
+                            <div class="flex items-start"><i data-lucide="trending-up" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Large & Growing Market:</strong> Tapping into the rapidly expanding fintech and investment sectors.</p></div>
+                            <div class="flex items-start"><i data-lucide="cpu" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Proprietary Technology:</strong> Advanced AI/ML models and a scalable platform architecture.</p></div>
+                            <div class="flex items-start"><i data-lucide="users-2" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Experienced Team:</strong> Led by experts in data science, technology, and finance.</p></div>
+                            <div class="flex items-start"><i data-lucide="target" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Clear Growth Strategy:</strong> Phased development, user acquisition, and market expansion plans.</p></div>
+                            <div class="flex items-start"><i data-lucide="shield-check" class="h-7 w-7 text-accent mr-4 shrink-0 mt-1"></i><p><strong>Risk Mitigation:</strong> Strategies for market adoption, data accuracy, and competition.</p></div>
                         </div>
-                         <div class="mt-10 text-center md:text-left">
-                             <a href="#" class="btn btn-primary" onclick="alert('Investor Deck download link would be here.'); return false;">Download Investor Deck (PDF)</a>
-                             <p class="text-xs text-secondary-custom mt-2">Illustrative: Actual file download to be implemented.</p>
+                         <div class="mt-12 text-center md:text-left"> {/* Increased margin */}
+                             <a href="#" class="btn btn-primary px-8 py-3.5" onclick="alert('Investor Deck download link would be here.'); return false;">Download Investor Deck (PDF)</a>
+                             <p class="text-xs text-secondary-custom mt-2.5">Illustrative: Actual file download to be implemented.</p>
                          </div>
                     </div>
-                    <div class="content-card p-8 reveal-on-scroll" style="animation-delay: 0.3s;">
-                        <h3 class="text-2xl font-semibold text-primary-custom mb-4 font-heading">Funding Request</h3>
-                        <p class="text-secondary-custom mb-3">We are seeking seed funding to finalize platform development, expand our data acquisition capabilities, and execute our initial go-to-market strategy.</p>
-                        <p class="text-secondary-custom font-semibold mb-1">Use of Funds:</p>
-                        <ul class="list-disc list-inside text-secondary-custom text-sm space-y-1">
+                    <div class="content-card p-8 md:p-10 reveal-on-scroll" style="animation-delay: 0.3s;">
+                        <h3 class="text-2xl lg:text-3xl font-semibold text-primary-custom mb-6 font-heading">Funding Request</h3> {/* Increased margin */}
+                        <p class="text-secondary-custom mb-4 leading-relaxed">We are seeking seed funding to finalize platform development, expand our data acquisition capabilities, and execute our initial go-to-market strategy.</p>
+                        <p class="text-primary-custom font-semibold mb-2">Use of Funds:</p>
+                        <ul class="list-disc list-inside text-secondary-custom text-sm space-y-1.5">
                             <li>Platform Enhancement & Scaling</li>
                             <li>Talent Acquisition (Engineering & Sales)</li>
                             <li>Data Licensing & Partnerships</li>
                             <li>Marketing & User Acquisition</li>
                             <li>Operational Expenses</li>
                         </ul>
-                        <div class="mt-6">
-                            <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_c9Hk9s.json" background="transparent" speed="1" style="width: 100%; max-width: 200px; height: auto; margin:auto;" loop autoplay aria-label="Animation of growing money or investment"></lottie-player>
+                        <div class="mt-8"> {/* Increased margin */}
+                            <lottie-player src="https://assets6.lottiefiles.com/packages/lf20_kfl4ksd9.json" background="transparent" speed="1" style="width: 100%; max-width: 220px; height: auto; margin:auto;" loop autoplay aria-label="Animation of growing money or investment with upward arrows"></lottie-player>
                         </div>
                     </div>
                 </div>
@@ -687,45 +422,55 @@
                     </p>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="content-card p-8 reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <div class="flex items-center mb-4">
-                            <img src="https://placehold.co/60x60/E2E8F0/1E293B?text=E" alt="Entrepreneur Icon" class="w-14 h-14 rounded-full mr-4 object-cover bg-accent-custom text-white flex items-center justify-center font-bold text-xl">
+                    <div class="content-card p-8 reveal-on-scroll hover:border-accent-custom transition-all duration-300" style="animation-delay: 0.2s;">
+                        <div class="flex items-center mb-5">
+                            <div class="w-14 h-14 rounded-full bg-accent-custom text-white flex items-center justify-center mr-4 shrink-0">
+                                <i data-lucide="user-round-cog" class="h-7 w-7"></i> {/* Changed Icon */}
+                            </div>
                             <div>
                                 <h3 class="text-xl font-semibold text-primary-custom font-heading">For Entrepreneurs</h3>
-                                <p class="text-sm text-accent">Scaling Ventures</p>
+                                <p class="text-sm text-accent font-medium">Scaling Ventures</p>
                             </div>
                         </div>
-                        <p class="text-secondary-custom text-sm mb-3">
+                        <p class="text-secondary-custom text-sm mb-3 leading-relaxed">
                            Jane, an agri-tech founder, used InvestWise to assess market demand for a new fertilizer. Sector health analysis and regional GDP forecasts gave her confidence to expand production, optimizing resource allocation and increasing market share.
                         </p>
-                        <p class="text-secondary-custom text-sm font-semibold">Outcome: Secured funding, +15% market share.</p>
+                        <p class="text-primary-custom text-sm font-semibold">Outcome: Secured expansion funding, achieved +15% market share.</p>
                     </div>
-                     <div class="content-card p-8 reveal-on-scroll" style="animation-delay: 0.3s;">
-                        <div class="flex items-center mb-4">
-                             <img src="https://placehold.co/60x60/E2E8F0/1E293B?text=I" alt="Investor Icon" class="w-14 h-14 rounded-full mr-4 object-cover bg-accent-custom text-white flex items-center justify-center font-bold text-xl">
+                    <div class="content-card p-8 reveal-on-scroll hover:border-accent-custom transition-all duration-300" style="animation-delay: 0.3s;">
+                        <div class="flex items-center mb-5">
+                             <div class="w-14 h-14 rounded-full bg-accent-custom text-white flex items-center justify-center mr-4 shrink-0">
+                                <i data-lucide="trending-up" class="h-7 w-7"></i> {/* Changed Icon */}
+                            </div>
                             <div>
                                 <h3 class="text-xl font-semibold text-primary-custom font-heading">For Investors</h3>
-                                <p class="text-sm text-accent">Identifying Opportunities</p>
+                                <p class="text-sm text-accent font-medium">Identifying Opportunities</p>
                             </div>
                         </div>
-                        <p class="text-secondary-custom text-sm mb-3">
+                        <p class="text-secondary-custom text-sm mb-3 leading-relaxed">
                            Ahmed, an angel investor, discovered a niche fintech startup via InvestWise's recommendation engine. The platform's risk analysis and market data provided a clear investment rationale.
                         </p>
-                        <p class="text-secondary-custom text-sm font-semibold">Outcome: Successful early-stage investment, projected 5x ROI.</p>
+                        <p class="text-primary-custom text-sm font-semibold">Outcome: Successful early-stage investment, projected 5x ROI.</p>
                     </div>
-                     <div class="content-card p-8 reveal-on-scroll" style="animation-delay: 0.4s;">
-                        <div class="flex items-center mb-4">
-                             <img src="https://placehold.co/60x60/E2E8F0/1E293B?text=P" alt="Policymaker Icon" class="w-14 h-14 rounded-full mr-4 object-cover bg-accent-custom text-white flex items-center justify-center font-bold text-xl">
+                    <div class="content-card p-8 reveal-on-scroll hover:border-accent-custom transition-all duration-300" style="animation-delay: 0.4s;">
+                        <div class="flex items-center mb-5">
+                             <div class="w-14 h-14 rounded-full bg-accent-custom text-white flex items-center justify-center mr-4 shrink-0">
+                                <i data-lucide="landmark" class="h-7 w-7"></i> {/* Changed Icon */}
+                            </div>
                             <div>
                                 <h3 class="text-xl font-semibold text-primary-custom font-heading">For Policymakers</h3>
-                                <p class="text-sm text-accent">Informed Decisions</p>
+                                <p class="text-sm text-accent font-medium">Informed Decisions</p>
                             </div>
                         </div>
-                        <p class="text-secondary-custom text-sm mb-3">
+                        <p class="text-secondary-custom text-sm mb-3 leading-relaxed">
                            Government agencies can leverage InvestWise's macroeconomic forecasts and sector analyses to formulate evidence-based economic policies and attract foreign investment.
                         </p>
-                        <p class="text-secondary-custom text-sm font-semibold">Outcome: Enhanced policy formulation, targeted development.</p>
+                        <p class="text-primary-custom text-sm font-semibold">Outcome: Enhanced policy formulation, targeted development.</p>
                     </div>
+                </div>
+                 <div class="mt-16 text-center reveal-on-scroll" style="animation-delay: 0.5s;">
+                    <lottie-player src="https://assets5.lottiefiles.com/packages/lf20_SmywXCxQeO.json" background="transparent" speed="1" style="width: 100%; max-width: 350px; height: auto; margin:auto;" loop autoplay aria-label="Animation showing diverse people collaborating and achieving goals"></lottie-player>
+                    <p class="text-secondary-custom mt-2">Empowering diverse stakeholders across the financial ecosystem.</p>
                 </div>
             </div>
         </section>
@@ -739,32 +484,35 @@
                     </p>
                 </div>
                 <div class="max-w-5xl mx-auto">
-                    <div class="content-card p-8 md:p-10 mb-12 flex flex-col sm:flex-row items-center text-center sm:text-left reveal-on-scroll" style="animation-delay: 0.2s;">
-                        <img src="https://placehold.co/150x150/0D9488/FFFFFF?text=DW" alt="Daniel Wanjala, Lead Developer" class="w-32 h-32 sm:w-40 sm:h-40 rounded-full mr-0 sm:mr-8 mb-6 sm:mb-0 object-cover border-4 border-accent-custom shadow-lg">
+                    <div class="content-card p-8 md:p-10 mb-12 flex flex-col sm:flex-row items-center text-center sm:text-left reveal-on-scroll hover:shadow-lg" style="animation-delay: 0.2s;">
+                        <img src="https://placehold.co/160x160/0D9488/FFFFFF?text=DW" alt="Daniel Wanjala, Lead Developer" class="w-36 h-36 sm:w-40 sm:h-40 rounded-full mr-0 sm:mr-10 mb-6 sm:mb-0 object-cover border-4 border-accent-custom shadow-xl shrink-0"> {/* Increased margin */}
                         <div>
-                            <h3 class="text-2xl font-bold text-primary-custom font-heading">Daniel Wanjala</h3>
-                            <p class="text-accent font-semibold mb-2">Lead Developer, ML Engineer, System Architect</p>
-                            <p class="text-secondary-custom mb-4 text-sm">
+                            <h3 class="text-2xl lg:text-3xl font-bold text-primary-custom font-heading">Daniel Wanjala</h3>
+                            <p class="text-accent font-semibold text-lg mb-2.5">Lead Developer, ML Engineer, System Architect</p> {/* Increased font size and margin */}
+                            <p class="text-secondary-custom mb-5 text-sm leading-relaxed">
                                 With a Master's in Data Science and Machine Learning from the Cooperative University of Kenya, Daniel is the visionary architect behind InvestWise. His expertise in AI-driven solutions and scalable systems ensures the platform's robustness and innovation, tailored for emerging markets.
                             </p>
-                            <div class="flex justify-center sm:justify-start space-x-4">
-                                <a href="https://www.linkedin.com/in/daniel-wanjala-912b8b17b" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent" aria-label="Daniel Wanjala's LinkedIn"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
-                                <a href="https://github.com/MadScie254" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent" aria-label="Daniel Wanjala's GitHub"><i data-lucide="github" class="h-6 w-6"></i></a>
-                                <a href="https://danco-analytics.github.io/Portifolio/" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent" aria-label="Daniel Wanjala's Portfolio"><i data-lucide="briefcase" class="h-6 w-6"></i></a>
+                            <div class="flex justify-center sm:justify-start space-x-5"> {/* Increased spacing */}
+                                <a href="https://www.linkedin.com/in/daniel-wanjala-912b8b17b" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent transition-colors" aria-label="Daniel Wanjala's LinkedIn"><i data-lucide="linkedin" class="h-6 w-6"></i></a>
+                                <a href="https://github.com/MadScie254" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent transition-colors" aria-label="Daniel Wanjala's GitHub"><i data-lucide="github" class="h-6 w-6"></i></a>
+                                <a href="https://danco-analytics.github.io/Portifolio/" target="_blank" rel="noopener noreferrer" class="text-secondary-custom hover:text-accent transition-colors" aria-label="Daniel Wanjala's Portfolio"><i data-lucide="briefcase" class="h-6 w-6"></i></a>
                             </div>
                         </div>
                     </div>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-center md:text-left">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 text-center md:text-left"> {/* Increased gap */}
                         <div class="reveal-on-scroll" style="animation-delay: 0.3s;">
-                            <div class="flex justify-center md:justify-start mb-3"><i data-lucide="rocket" class="h-10 w-10 text-accent"></i></div>
-                            <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading">Our Mission</h3>
-                            <p class="text-secondary-custom text-sm">To democratize access to sophisticated financial intelligence, empowering individuals and organizations across Africa to make informed investment decisions and drive economic growth.</p>
+                            <div class="flex justify-center md:justify-start mb-4"><i data-lucide="rocket" class="h-12 w-12 text-accent"></i></div>
+                            <h3 class="text-xl lg:text-2xl font-semibold text-primary-custom mb-2.5 font-heading">Our Mission</h3>
+                            <p class="text-secondary-custom text-sm leading-relaxed">To democratize access to sophisticated financial intelligence, empowering individuals and organizations across Africa to make informed investment decisions and drive economic growth.</p>
                         </div>
                         <div class="reveal-on-scroll" style="animation-delay: 0.4s;">
-                            <div class="flex justify-center md:justify-start mb-3"><i data-lucide="eye" class="h-10 w-10 text-accent"></i></div>
-                            <h3 class="text-xl font-semibold text-primary-custom mb-2 font-heading">Our Vision</h3>
-                            <p class="text-secondary-custom text-sm">To be the leading and most trusted financial intelligence platform in emerging markets, recognized for accuracy, innovation, and transformative impact on investment strategies and economic development.</p>
+                            <div class="flex justify-center md:justify-start mb-4"><i data-lucide="eye" class="h-12 w-12 text-accent"></i></div>
+                            <h3 class="text-xl lg:text-2xl font-semibold text-primary-custom mb-2.5 font-heading">Our Vision</h3>
+                            <p class="text-secondary-custom text-sm leading-relaxed">To be the leading and most trusted financial intelligence platform in emerging markets, recognized for accuracy, innovation, and transformative impact on investment strategies and economic development.</p>
                         </div>
+                    </div>
+                    <div class="mt-16 text-center reveal-on-scroll" style="animation-delay: 0.5s;">
+                        <lottie-player src="https://assets4.lottiefiles.com/packages/lf20_c9b8h4gh.json" background="transparent" speed="1" style="width: 100%; max-width: 300px; height: auto; margin:auto;" loop autoplay aria-label="Animation of a diverse team working together with a globe"></lottie-player>
                     </div>
                 </div>
             </div>
@@ -772,92 +520,92 @@
 
         <section id="contact" class="section-padding bg-primary-custom">
             <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
+                <div class="text-center mb-16"> {/* Increased margin */}
                     <h2 class="text-3xl sm:text-4xl font-bold text-primary-custom mb-4 font-heading reveal-on-scroll">Connect With InvestWise</h2>
                     <p class="text-lg text-secondary-custom max-w-2xl mx-auto reveal-on-scroll" style="animation-delay: 0.1s;">
                         Whether you're interested in a platform demo, investment opportunities, or have any inquiries, our team is ready to assist you.
                     </p>
                 </div>
-                <div class="max-w-3xl mx-auto content-card p-8 md:p-10 reveal-on-scroll" style="animation-delay: 0.2s;">
+                <div class="max-w-3xl mx-auto content-card p-8 md:p-12 reveal-on-scroll" style="animation-delay: 0.2s;"> {/* Increased padding */}
                     <form id="contact-form" class="space-y-6">
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="name" class="block text-sm font-medium text-primary-custom mb-1">Full Name</label>
+                                <label for="name" class="block text-sm font-semibold text-primary-custom mb-1.5">Full Name</label>
                                 <input type="text" name="name" id="name" required placeholder="e.g., Jina Kamau">
                             </div>
                             <div>
-                                <label for="email" class="block text-sm font-medium text-primary-custom mb-1">Email Address</label>
+                                <label for="email" class="block text-sm font-semibold text-primary-custom mb-1.5">Email Address</label>
                                 <input type="email" name="email" id="email" required placeholder="e.g., j.kamau@example.com">
                             </div>
                         </div>
                         <div>
-                            <label for="subject" class="block text-sm font-medium text-primary-custom mb-1">Subject</label>
+                            <label for="subject" class="block text-sm font-semibold text-primary-custom mb-1.5">Subject</label>
                             <input type="text" name="subject" id="subject" required placeholder="e.g., Platform Demo Request">
                         </div>
                         <div>
-                            <label for="message" class="block text-sm font-medium text-primary-custom mb-1">Message</label>
+                            <label for="message" class="block text-sm font-semibold text-primary-custom mb-1.5">Message</label>
                             <textarea name="message" id="message" rows="5" required placeholder="Your inquiry or message..."></textarea>
                         </div>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-primary text-lg w-full sm:w-auto">Send Message</button>
+                        <div class="text-center pt-2"> {/* Added padding top */}
+                            <button type="submit" class="btn btn-primary text-lg w-full sm:w-auto px-10 py-3.5">Send Message</button>
                         </div>
                         <div id="form-feedback" class="mt-4 text-center text-sm"></div>
                     </form>
-                    <div class="mt-10 text-center border-t border-custom pt-8">
-                        <p class="text-secondary-custom font-semibold mb-3">Or reach us directly:</p>
-                        <p class="text-secondary-custom text-sm"><i data-lucide="mail" class="inline h-5 w-5 mr-2 text-accent"></i> Email: <a href="mailto:info@investwise.ke" class="hover:text-accent">info@investwise.ke</a> (Illustrative)</p>
-                        <p class="text-secondary-custom text-sm mt-1"><i data-lucide="phone" class="inline h-5 w-5 mr-2 text-accent"></i> Phone: +254 700 000 000 (Illustrative)</p>
+                    <div class="mt-12 text-center border-t border-custom pt-10"> {/* Increased margin/padding */}
+                        <p class="text-secondary-custom font-semibold mb-4">Or reach us directly:</p>
+                        <p class="text-secondary-custom text-sm mb-1.5"><i data-lucide="mail" class="inline h-5 w-5 mr-2.5 text-accent"></i> Email: <a href="mailto:info@investwise.ke" class="hover:text-accent transition-colors">info@investwise.ke</a> (Illustrative)</p>
+                        <p class="text-secondary-custom text-sm"><i data-lucide="phone" class="inline h-5 w-5 mr-2.5 text-accent"></i> Phone: +254 700 000 000 (Illustrative)</p>
                     </div>
                 </div>
             </div>
         </section>
     </main>
 
-    <footer class="py-12">
+    <footer class="py-16"> {/* Increased padding */}
         <div class="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-8 text-sm">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-10 text-sm"> {/* Increased gap/margin */}
                 <div>
-                    <div class="flex items-center space-x-2 mb-3">
-                        <svg class="h-7 w-auto text-accent" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M50 10 C 27.90861 10 10 27.90861 10 50 C 10 72.09139 27.90861 90 50 90 C 72.09139 90 90 72.09139 90 50 C 90 27.90861 72.09139 10 50 10 Z M 50 15 C 69.329966 15 85 30.670034 85 50 C 85 69.329966 69.329966 85 50 85 C 30.670034 85 15 69.329966 15 50 C 15 30.670034 30.670034 15 50 15 Z M 45 30 L 45 45 L 30 45 L 30 55 L 45 55 L 45 70 L 55 70 L 55 55 L 70 55 L 70 45 L 55 45 L 55 30 L 45 30 Z"/></svg>
+                    <div class="flex items-center space-x-2.5 mb-4"> {/* Increased spacing/margin */}
+                        <svg class="h-8 w-auto text-accent" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" fill="currentColor"><path d="M50 10 C 27.90861 10 10 27.90861 10 50 C 10 72.09139 27.90861 90 50 90 C 72.09139 90 90 72.09139 90 50 C 90 27.90861 72.09139 10 50 10 Z M 50 15 C 69.329966 15 85 30.670034 85 50 C 85 69.329966 69.329966 85 50 85 C 30.670034 85 15 69.329966 15 50 C 15 30.670034 30.670034 15 50 15 Z M 45 30 L 45 45 L 30 45 L 30 55 L 45 55 L 45 70 L 55 70 L 55 55 L 70 55 L 70 45 L 55 45 L 55 30 L 45 30 Z"/></svg>
                         <span class="text-xl font-bold text-primary-custom font-heading">InvestWise</span>
                     </div>
-                    <p class="text-secondary-custom">Pioneering data-driven investment intelligence for Africa's dynamic markets.</p>
+                    <p class="text-secondary-custom leading-relaxed">Pioneering data-driven investment intelligence for Africa's dynamic markets.</p>
                 </div>
                 <div>
-                    <h5 class="font-semibold text-primary-custom mb-3 font-heading">Quick Links</h5>
-                    <ul class="space-y-2 text-secondary-custom">
-                        <li><a href="#platform" class="hover:text-accent">Platform</a></li>
-                        <li><a href="#technology" class="hover:text-accent">Technology</a></li>
-                        <li><a href="#roadmap" class="hover:text-accent">Roadmap</a></li>
-                        <li><a href="#investors" class="hover:text-accent">Investors</a></li>
+                    <h5 class="text-base font-semibold text-primary-custom mb-4 font-heading">Quick Links</h5> {/* Increased margin */}
+                    <ul class="space-y-2.5 text-secondary-custom"> {/* Increased spacing */}
+                        <li><a href="#platform" class="hover:text-accent transition-colors">Platform</a></li>
+                        <li><a href="#technology" class="hover:text-accent transition-colors">Technology</a></li>
+                        <li><a href="#roadmap" class="hover:text-accent transition-colors">Roadmap</a></li>
+                        <li><a href="#investors" class="hover:text-accent transition-colors">Investors</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-semibold text-primary-custom mb-3 font-heading">Legal</h5>
-                    <ul class="space-y-2 text-secondary-custom">
-                        <li><a href="#" class="hover:text-accent" onclick="alert('Privacy Policy page link.'); return false;">Privacy Policy</a></li>
-                        <li><a href="#" class="hover:text-accent" onclick="alert('Terms of Service page link.'); return false;">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-accent" onclick="alert('Disclaimer page link.'); return false;">Disclaimer</a></li>
+                    <h5 class="text-base font-semibold text-primary-custom mb-4 font-heading">Legal</h5>
+                    <ul class="space-y-2.5 text-secondary-custom">
+                        <li><a href="#" class="hover:text-accent transition-colors" onclick="alert('Privacy Policy page link.'); return false;">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors" onclick="alert('Terms of Service page link.'); return false;">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-accent transition-colors" onclick="alert('Disclaimer page link.'); return false;">Disclaimer</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h5 class="font-semibold text-primary-custom mb-3 font-heading">Connect</h5>
-                    <div class="flex space-x-4 text-secondary-custom">
-                        <a href="#" class="hover:text-accent" aria-label="InvestWise LinkedIn"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
-                        <a href="#" class="hover:text-accent" aria-label="InvestWise Twitter"><i data-lucide="twitter" class="h-5 w-5"></i></a>
-                        <a href="#" class="hover:text-accent" aria-label="InvestWise Facebook"><i data-lucide="facebook" class="h-5 w-5"></i></a>
+                    <h5 class="text-base font-semibold text-primary-custom mb-4 font-heading">Connect</h5>
+                    <div class="flex space-x-5 text-secondary-custom mb-3"> {/* Increased spacing */}
+                        <a href="#" class="hover:text-accent transition-colors" aria-label="InvestWise LinkedIn"><i data-lucide="linkedin" class="h-5 w-5"></i></a>
+                        <a href="#" class="hover:text-accent transition-colors" aria-label="InvestWise Twitter"><i data-lucide="twitter" class="h-5 w-5"></i></a>
+                        <a href="#" class="hover:text-accent transition-colors" aria-label="InvestWise Facebook"><i data-lucide="facebook" class="h-5 w-5"></i></a>
                     </div>
-                    <p class="text-secondary-custom mt-3">Nairobi, Kenya</p>
+                    <p class="text-secondary-custom">Nairobi, Kenya</p>
                 </div>
             </div>
-            <div class="border-t border-custom pt-8 text-center text-xs text-secondary-custom">
-                <p>&copy; <span id="current-year"></span> InvestWise Predictor. All rights reserved. Crafted with <i data-lucide="heart" class="inline h-4 w-4 text-red-500"></i> in Nairobi.</p>
-                <p class="mt-1">This is a conceptual frontend website. The InvestWise platform is a separate application.</p>
+            <div class="border-t border-custom pt-10 text-center text-xs text-secondary-custom"> {/* Increased padding */}
+                <p>&copy; <span id="current-year"></span> InvestWise Predictor. All rights reserved. Crafted with <i data-lucide="heart" class="inline h-4 w-4 text-red-500 fill-current"></i> in Nairobi.</p>
+                <p class="mt-1.5">This is a conceptual frontend website. The InvestWise platform is a separate application.</p>
             </div>
         </div>
     </footer>
 
-    <button id="theme-toggle-button" title="Toggle Theme">
+    <button id="theme-toggle-button" title="Toggle Theme" aria-label="Toggle Theme">
         <i data-lucide="sun" class="h-6 w-6 icon-sun"></i>
         <i data-lucide="moon" class="h-6 w-6 icon-moon hidden"></i>
     </button>
@@ -887,11 +635,11 @@
         const currentYearSpan = document.getElementById('current-year');
         
         // --- Loading Overlay ---
-        window.onload = () => {
+        window.addEventListener('load', () => { // Changed to window.load for better timing
             setTimeout(() => {
                 if (loadingOverlay) loadingOverlay.classList.add('hidden');
-            }, 300); // Short delay for visual effect
-        };
+            }, 200); // Slightly shorter delay as assets should be loading
+        });
 
         // --- Theme Management ---
         const themeToggleButton = document.getElementById('theme-toggle-button');
@@ -905,6 +653,8 @@
                 moonIcon.classList.toggle('hidden', theme !== 'dark');
             }
             localStorage.setItem('investwise-theme', theme);
+            // Dispatch a custom event for other components to listen to theme changes if needed
+            window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: theme } }));
         };
 
         const toggleTheme = () => {
@@ -914,21 +664,19 @@
 
         if (themeToggleButton) {
             themeToggleButton.addEventListener('click', toggleTheme);
-            // Apply saved theme or system preference
             const savedTheme = localStorage.getItem('investwise-theme');
+
             if (savedTheme) {
                 applyTheme(savedTheme);
-            } else if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-                applyTheme('dark');
             } else {
-                applyTheme('light'); // Default to light
+                applyTheme('light');
             }
         }
         
         // --- Sticky Header ---
         if (mainHeader) {
             window.addEventListener('scroll', () => {
-                mainHeader.classList.toggle('scrolled', window.scrollY > 50);
+                mainHeader.classList.toggle('scrolled', window.scrollY > 60); // Trigger slightly later
             });
         }
 
@@ -946,11 +694,10 @@
                 mobileIconOpen.classList.toggle('hidden');
                 mobileIconClose.classList.toggle('hidden');
             });
-            // Close mobile menu on link click
             mobileMenu.querySelectorAll('a[href^="#"]').forEach(link => {
                 link.addEventListener('click', () => {
                     if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenuButton.click(); // Simulate click to close
+                        mobileMenuButton.click(); 
                     }
                 });
             });
@@ -967,7 +714,7 @@
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    const targetPosition = targetElement.offsetTop - headerHeight + 1; // +1 for pixel perfection
+                    const targetPosition = targetElement.offsetTop - headerHeight + 1; 
                     window.scrollTo({ top: targetPosition, behavior: 'smooth' });
                 }
             });
@@ -981,35 +728,48 @@
         
         if (sections.length > 0 && "IntersectionObserver" in window) {
             const scrollSpyObserver = new IntersectionObserver(entries => {
-                let currentSectionId = '';
+                let intersectingSections = [];
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Prefer sections that are more visible or higher up
-                        if (!currentSectionId || entry.target.offsetTop < document.getElementById(currentSectionId).offsetTop) {
-                           currentSectionId = entry.target.id;
-                        }
+                        intersectingSections.push(entry.target);
                     }
                 });
 
-                // Fallback for when scrolling fast or at the very top/bottom
-                if (!currentSectionId) {
-                    let closestSection = sections[0].id;
-                    let minDistance = Infinity;
-                    sections.forEach(section => {
-                        const distance = Math.abs(section.getBoundingClientRect().top);
-                        if (distance < minDistance) {
-                            minDistance = distance;
-                            closestSection = section.id;
-                        }
-                    });
-                    currentSectionId = closestSection;
-                }
+                intersectingSections.sort((a, b) => a.offsetTop - b.offsetTop);
                 
-                if (currentSectionId) activateNavLink(currentSectionId);
+                if (intersectingSections.length > 0) {
+                    // Prioritize the section whose top is closest to or past the scrollspy line
+                    let activeSection = intersectingSections[0]; // Default to highest visible
+                    for (let section of intersectingSections) {
+                        if (section.getBoundingClientRect().top <= headerHeight + 50) { // 50px buffer
+                            activeSection = section;
+                        } else {
+                            break; // Sections below this are not yet "active"
+                        }
+                    }
+                    activateNavLink(activeSection.id);
+                } else if (window.scrollY < sections[0].offsetTop - headerHeight) {
+                     activateNavLink(sections[0].id); // Default to first section if above all
+                }
 
-            }, { rootMargin: `-${headerHeight}px 0px -${window.innerHeight - headerHeight - 150}px 0px`, threshold: 0.01 }); // Adjust threshold and rootMargin
+            }, { rootMargin: `-${headerHeight-1}px 0px -${window.innerHeight - headerHeight - 150}px 0px`, threshold: 0 }); // Fine-tuned rootMargin
 
             sections.forEach(section => scrollSpyObserver.observe(section));
+             // Initial check in case a section is already in view on load (e.g. from a hash link)
+            setTimeout(() => {
+                let currentSectionId = '';
+                const scrollPosition = window.scrollY + headerHeight + 50; // 50px buffer
+                sections.forEach(section => {
+                    if (section.offsetTop <= scrollPosition) {
+                        currentSectionId = section.id;
+                    }
+                });
+                if (currentSectionId) {
+                    activateNavLink(currentSectionId);
+                } else if (sections.length > 0) {
+                     activateNavLink(sections[0].id); // Default to first section if nothing else matches
+                }
+            }, 100);
         }
 
 
@@ -1019,7 +779,7 @@
             try {
                 new Typed('#typed-investwise-target', {
                     strings: ["Intelligent Forecasting", "Data-Driven Insights", "Strategic Investments", "Market Analysis", "Economic Growth"],
-                    typeSpeed: 60, backSpeed: 40, backDelay: 2000, loop: true, smartBackspace: true
+                    typeSpeed: 50, backSpeed: 30, backDelay: 2200, loop: true, smartBackspace: true, // Adjusted speeds
                 });
             } catch (error) { console.error("Typed.js Error:", error); typedTarget.textContent = 'Intelligent Forecasting'; }
         } else if (typedTarget) { typedTarget.textContent = 'Intelligent Forecasting'; }
@@ -1030,14 +790,19 @@
             const revealObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
+                        // Apply animation delay from style attribute if present
+                        const delay = entry.target.style.animationDelay || '0s';
+                        entry.target.style.transitionDelay = delay; // Apply to CSS transition
                         entry.target.classList.add('is-visible');
-                        // Optional: unobserve after revealing to save resources
-                        // observer.unobserve(entry.target); 
+                        // observer.unobserve(entry.target); // Keep observing for re-animation if needed
+                    } else {
+                        // Optional: remove 'is-visible' if you want elements to re-animate when scrolling back up
+                        // entry.target.classList.remove('is-visible');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.1 }); // Trigger when 10% visible
             revealElements.forEach(el => revealObserver.observe(el));
-        } else { // Fallback for older browsers
+        } else { 
             revealElements.forEach(el => el.classList.add('is-visible'));
         }
         
@@ -1045,12 +810,25 @@
         const staggerContainers = document.querySelectorAll('.stagger-children');
         staggerContainers.forEach(container => {
             const children = Array.from(container.children);
-            children.forEach((child, index) => {
-                // Apply this if the parent is already visible or use IntersectionObserver for parent
-                child.style.transitionDelay = `${index * 0.1 + parseFloat(child.style.animationDelay || 0)}s`;
-                // If using JS to add 'is-visible' to children based on parent visibility
-                // new IntersectionObserver... for parent, then add 'is-visible' to children with delay
-            });
+            if ("IntersectionObserver" in window) {
+                const staggerObserver = new IntersectionObserver((entries, observer) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            children.forEach((child, index) => {
+                                child.style.transitionDelay = `${index * 0.1 + parseFloat(entry.target.style.animationDelay || 0)}s`;
+                                child.classList.add('is-visible'); // Assuming reveal-on-scroll class is on children
+                            });
+                            observer.unobserve(entry.target); // Animate only once
+                        }
+                    });
+                }, { threshold: 0.1 });
+                staggerObserver.observe(container);
+            } else { // Fallback
+                 children.forEach((child, index) => {
+                    child.style.transitionDelay = `${index * 0.1}s`;
+                    child.classList.add('is-visible');
+                });
+            }
         });
 
 
@@ -1065,7 +843,7 @@
                 tabContents.forEach(content => {
                     content.classList.toggle('active', content.id === targetTab);
                 });
-                lucide.createIcons(); // Re-init icons if new ones are shown
+                lucide.createIcons(); 
             });
         });
 
@@ -1079,31 +857,34 @@
                 const slide = document.createElement('div');
                 slide.classList.add('swiper-slide', 'timeline-slide');
                 slide.innerHTML = `
-                    <div class="timeline-slide-icon"><i data-lucide="${item.icon || 'calendar-clock'}" class="h-6 w-6"></i></div>
-                    <h4 class="text-lg font-semibold mb-1 mt-8 font-heading">${item.title}</h4>
-                    <p class="timeline-date text-sm font-bold mb-3">${item.date}</p>
-                    <p>${item.description}</p>
+                    <div class="timeline-slide-icon"><i data-lucide="${item.icon || 'calendar-days'}" class="h-7 w-7"></i></div> {/* Increased icon size */}
+                    <h4 class="text-lg font-semibold mb-1.5 mt-10 font-heading">${item.title}</h4> {/* Increased margins */}
+                    <p class="timeline-date text-sm font-bold mb-3.5">${item.date}</p>
+                    <p class="leading-relaxed">${item.description}</p> {/* Improved line height */}
                 `;
                 timelineSwiperWrapper.appendChild(slide);
             });
-            lucide.createIcons(); // Create icons for timeline items
+            lucide.createIcons(); 
 
             new Swiper('.timeline-swiper-container', {
                 slidesPerView: 1,
-                spaceBetween: 20,
-                loop: timelineData.length > 3, // Consider loop only if many items
+                spaceBetween: 25, // Increased space
+                loop: timelineData.length > 3, 
                 grabCursor: true,
+                centeredSlides: timelineData.length <= 2, // Center if few slides
                 pagination: {
                     el: '.swiper-pagination',
                     clickable: true,
+                    dynamicBullets: true,
                 },
                 navigation: {
                     nextEl: '.swiper-button-next',
                     prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
-                    768: { slidesPerView: 2, spaceBetween: 30 },
-                    1024: { slidesPerView: 3, spaceBetween: 30 },
+                    640: { slidesPerView: timelineData.length < 2 ? 1 : 1.5, centeredSlides: timelineData.length < 2, spaceBetween: 20 }, // sm
+                    768: { slidesPerView: timelineData.length < 3 ? timelineData.length : 2.5, centeredSlides: timelineData.length < 3, spaceBetween: 25 }, // md
+                    1024: { slidesPerView: timelineData.length < 4 ? timelineData.length : 3, centeredSlides: timelineData.length < 4, spaceBetween: 30 }, // lg
                 }
             });
         }
@@ -1133,7 +914,7 @@
                     formFeedback.textContent = 'Please fill out all required fields.';
                     formFeedback.className = 'mt-4 text-center text-sm text-red-600 dark:text-red-400';
                 }
-                setTimeout(() => { formFeedback.textContent = ''; }, 6000);
+                setTimeout(() => { formFeedback.textContent = ''; }, 7000); // Longer display
             });
         }
 
